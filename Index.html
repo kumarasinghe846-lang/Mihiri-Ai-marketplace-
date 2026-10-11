@@ -240,19 +240,23 @@ p.price ??
 p.sale_price ??
 p.supplier_price;
 
-}
 
 function imageOf(p){
+  return p.image_url ??
+         p.image ??
+         p.photo_url ??
+         p.thumbnail ??
+         "";
+}
 
-return p.image_url ??
-p.image ??
-p.photo_url ??
-p.thumbnaifunction idOf(p){
+function idOf(p){
   return p.product_code ??
          p.product_id ??
          p.sku ??
          p.id ??
          "";
+  }
+    
 }
 }
 }
