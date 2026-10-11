@@ -354,7 +354,8 @@ const status=document.getElementById("status");
 try{
 
 const url =
-SUPABASE_URL +
+  SUPABASE_URL +
+  "/rest/v1/products?select=*&is_active=eq.true&order=created_at.desc";
 "/rest/v1/products?select=*&is_active=eq.true&order=created_at.desc";
 SUPABASE_URL +
 "/rest/
