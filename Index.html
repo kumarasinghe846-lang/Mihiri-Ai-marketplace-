@@ -247,18 +247,13 @@ function imageOf(p){
 return p.image_url ??
 p.image ??
 p.photo_url ??
-p.thumbnail_url ??
-"";
-
-}
-
-
-function idOf(p){
+p.thumbnaifunction idOf(p){
   return p.product_code ??
          p.product_id ??
          p.sku ??
          p.id ??
          "";
+}
 }
 }
 
