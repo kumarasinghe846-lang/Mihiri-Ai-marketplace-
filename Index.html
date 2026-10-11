@@ -252,13 +252,14 @@ p.thumbnail_url ??
 
 }
 
+
 function idOf(p){
-
-return p.product_id ??
-p.sku ??
-p.id ??
-"";
-
+  return p.product_code ??
+         p.product_id ??
+         p.sku ??
+         p.id ??
+         "";
+}
 }
 
 function nameOf(p){
