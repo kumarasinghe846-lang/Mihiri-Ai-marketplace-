@@ -356,13 +356,14 @@ try{
 const url =
   SUPABASE_URL +
   "/rest/v1/products?select=*&is_active=eq.true&order=created_at.desc";
-"/rest/v1/products?select=*&is_active=eq.true&order=created_at.desc";
-SUPABASE_URL +
-"/rest/
-
-  "/rest/v1/products?select=*&is_active=eq.true&order=created_at.desc";
 
 const res = await fetch(url,{
+  headers:{
+    apikey:SUPABASE_PUBLISHABLE_KEY,
+    Authorization:
+      "Bearer " + SUPABASE_PUBLISHABLE_KEY
+  }
+});
 headers:{
 apikey:SUPABASE_PUBLISHABLE_KEY,
 Authorization:
