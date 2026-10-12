@@ -276,81 +276,46 @@ p.category_name ??
 
 function renderProducts(list){
 
-const box=document.getElementById("products");
+function renderProducts(list){
+  const box = document.getElementById("products");
 
-if(!list.length){
+  if (!list.length) {
+    box.innerHTML = '<div class="empty">දැනට products හමු වුණේ නැහැ.</div>';
+    return;
+  }
 
-box.innerHTML =
-'<div class="empty">දැනට products හමු වුණේ නැහැ.</div>';
+  box.innerHTML = list.map((p, index) => {
+    const id = idOf(p);
+    const name = nameOf(p);
+    const img = imageOf(p);
+    const price = productPrice(p);
 
-return;
+    return '<article class="card">' +
+      (img
+        ? '<img src="' + esc(img) + '" alt="' + esc(name) + '">'
+        : '<div class="noimg">🛍️</div>') +
+      '<h3>' + esc(name) + '</h3>' +
+      '<div class="id">Product ID: ' + esc(id) + '</div>' +
+      (p.description ? '<div class="desc">' + esc(p.description) + '</div>' : '') +
+      '<div class="price">' + money(price) + '</div>' +
+      '<div class="meta">' + esc(categoryOf(p)) + '</div>' +
+      '<div class="actions">' +
+      '<button class="details" data-action="details" data-index="' + index + '">Details</button>' +
+      '<button class="wa" data-action="whatsapp" data-index="' + index + '">WhatsApp</button>' +
+      '</div></article>';
+  }).join("");
 
-}
+  box.querySelectorAll("[data-action]").forEach(button => {
+    button.addEventListener("click", function() {
+      const p = list[Number(this.dataset.index)];
+      if (!p) return;
 
-box.innerHTML=list.map(p=>{
-
-const id=idOf(p);
-const name=nameOf(p);
-const img=imageOf(p);
-const price=productPrice(p);
-
-return '<article class="card">' +
-
-(img
-? '<img src="' +
-esc(img) +
-'" alt="' +
-esc(name) +
-'">'
-: '<div class="noimg">🛍️</div>') +
-
-'<h3>' +
-esc(name) +
-'</h3>' +
-
-'<div class="id">Product ID: ' +
-esc(id) +
-'</div>' +
-
-(p.description
-? '<div class="desc">' +
-esc(p.description) +
-'</div>'
-: '') +
-
-'<div class="price">' +
-money(price) +
-'</div>' +
-
-'<div class="meta">' +
-esc(categoryOf(p)) +
-'</div>' +
-
-'<div class="actions">' +
-
-'<button class="details" onclick="showDetails(' +
-JSON.stringify(p)
-  .replace(/&/g,"&amp;")
-  .replace(/"/g,"&quot;")
-  .replace(/</g,"\\u003c")+
-')">Details</button>' +
-
-'<button class="wa" onclick="orderWhatsApp(' +
-JSON.stringify(p)
-  .replace(/&/g,"&amp;")
-  .replace(/"/g,"&quot;")
-  .replace(/</g,"\\u003c") +
-')">' +
-'WhatsApp</button>' +
-
-'</div>' +
-
-'</article>';
-
-}).join("");
-
-}
-
+      if (this.dataset.action === "details") showDetails(p);
+      if (this.dataset.action === "whatsapp") orderWhatsApp(p);
+    });
+  });
+  }
+      
 async function loadProducts(){
 
 const status=document.getElementById("status");
