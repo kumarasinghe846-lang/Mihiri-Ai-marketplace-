@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ú<!DOCTYPE html>
 <html lang="si">
 <head>
 <meta charset="UTF-8">
@@ -329,7 +329,10 @@ esc(categoryOf(p)) +
 '<div class="actions">' +
 
 '<button class="details" onclick="showDetails(' +
-JSON.stringify(p).replace(/</g,"\\u003c") +
+JSON.stringify(p)
+  .replace(/&/g,"&amp;")
+  .replace(/"/g,"&quot;")
+  .replace(/</g,"\\u003c")+
 ')">Details</button>' +
 
 '<button class="wa" onclick="orderWhatsApp(' +
