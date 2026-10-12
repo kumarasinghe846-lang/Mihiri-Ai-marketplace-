@@ -360,14 +360,6 @@ const res = await fetch(url,{
       "Bearer " + SUPABASE_PUBLISHABLE_KEY
   }
 });
-headers:{
-apikey:SUPABASE_PUBLISHABLE_KEY,
-Authorization:
-"Bearer " +
-SUPABASE_PUBLISHABLE_KEY
-}
-});
-
 if(!res.ok)
 throw new Error(await res.text());
 
