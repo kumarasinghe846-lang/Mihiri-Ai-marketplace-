@@ -457,11 +457,22 @@ money(productPrice(p)) +
 
 }
 
-function showWhatsAppNotice(){
+function orderWhatsApp(p){
 
-alert(
-"WhatsApp ordering system එක ඉදිරියේදී connect කරමු."
-);
+const phone = "94769426251";
+
+const message =
+"Hello Mihiri Marketplace! I want to order this product.\n" +
+"Product: " + nameOf(p) + "\n" +
+"Product ID: " + idOf(p) + "\n" +
+"Price: " + money(productPrice(p)) + "\n" +
+"Please confirm availability and delivery details.";
+
+const url =
+"https://wa.me/" + phone +
+"?text=" + encodeURIComponent(message);
+
+window.open(url, "_blank");
 
 }
 
