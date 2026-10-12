@@ -333,7 +333,10 @@ JSON.stringify(p).replace(/</g,"\\u003c") +
 ')">Details</button>' +
 
 '<button class="wa" onclick="orderWhatsApp(' +
-JSON.stringify(p).replace(/</g,"\\u003c") +
+JSON.stringify(p)
+  .replace(/&/g,"&amp;")
+  .replace(/"/g,"&quot;")
+  .replace(/</g,"\\u003c") +
 ')">' +
 'WhatsApp</button>' +
 
